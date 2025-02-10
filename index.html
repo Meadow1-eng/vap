@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Proposal</title>
+    <style>
+        body {
+            background-color: #ffd6d6;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            color: #b30000;
+            margin-top: 50px;
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        #definitely, #yes {
+            background-color: #b30000;
+            color: white;
+        }
+        #definitely:hover, #yes:hover {
+            background-color: #800000;
+        }
+        #no {
+            background-color: #ff6666;
+            color: black;
+            position: absolute;
+        }
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 2em;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: #b30000;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 1.8em;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine? ❤️</h1>
+    <div class="button-container">
+        <button id="definitely">Definitely</button>
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+    <div class="popup" id="popupMessage">You make my world bloom with love! ❤️💐</div>
+
+    <script>
+        document.getElementById("definitely").addEventListener("click", () => showLove());
+        document.getElementById("yes").addEventListener("click", () => showLove());
+        
+        function showLove() {
+            for (let i = 0; i < 30; i++) {
+                let flower = document.createElement("img");
+                flower.classList.add("flower");
+                flower.src = "https://media.tenor.com/J_KnnXh12FQAAAAi/flower-rose.gif"; // Animated flower
+                flower.style.position = "absolute";
+                flower.style.width = "50px";
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.animationDuration = Math.random() * 3 + 3 + "s";
+                document.body.appendChild(flower);
+                setTimeout(() => { flower.remove(); }, 6000);
+            }
+            
+            let popup = document.getElementById("popupMessage");
+            popup.style.display = "block";
+            setTimeout(() => { popup.style.display = "none"; }, 3000);
+        }
+        
+        document.getElementById("no").addEventListener("mouseover", function() {
+            let x = Math.random() * (window.innerWidth - this.offsetWidth);
+            let y = Math.random() * (window.innerHeight - this.offsetHeight);
+            this.style.left = x + "px";
+            this.style.top = y + "px";
+        });
+    </script>
+</body>
+</html>
